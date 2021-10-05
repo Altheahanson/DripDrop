@@ -31,7 +31,7 @@ function dripDrop(dripValue, dropValue)
    //check to see if divisible by Both (3 and 5)
    //check to see if divisible by drip value (3)
    //check to see if divisible by drop value (5)
-   if(i % dripValue == 0 && i % dropValue){
+   if(i % dripValue == 0 && i % dropValue == 0){
      returnArray.push('DripDrop');
    }else if (i % dripValue == 0) {
       returnArray.push('Drip')
@@ -39,9 +39,9 @@ function dripDrop(dripValue, dropValue)
       returnArray.push('Drop')
    }else{
       returnArray.push(i);
-     }
-     
+     } 
    }
+   return returnArray;
 }
 
 // loop over the array and create a tablerow for each item
@@ -56,18 +56,29 @@ function displayData(dDArray){
    //clear table first
    tableBody.innerHTML = "";
 
-   for (let index = 0; index < dDarray.length; index += 5) {
+   for (let index = 0; index < dDArray.length; index += 5) {
       let tableRow = document.importNode(templateRow.content, true);
 
       //grab the table data and put to use in array
       let rowCols = tableRow.querySelectorAll("td");
-      rowCols[0].textContent = dDdata[i];
-      rowCols[1].textContent = dDdata[i+1];
-      rowCols[2].textContent = dDdata[i+2];
-      rowCols[3].textContent = dDdata[i+3];
-      rowCols[4].textContent = dDdata[i+4];
+
+      rowCols[0].classList.add(dDArray[index]);
+      rowCols[0].textContent = dDArray[index];
+
+      rowCols[1].classList.add(dDArray[index + 1]);
+      rowCols[1].textContent = dDArray[index+1];
+
+      rowCols[2].classList.add(dDArray[index + 2]);
+      rowCols[2].textContent = dDArray[index+2];
+
+      rowCols[3].classList.add(dDArray[index + 3]);
+      rowCols[3].textContent = dDArray[index+3];
+
+      rowCols[4].classList.add(dDArray[index + 4]);
+      rowCols[4].textContent = dDArray[index+4];
 
       tableBody.appendChild(tableRow);
 
    }
+
 }

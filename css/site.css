@@ -52,6 +52,19 @@ footer .social>a:hover{
     color: var(--secondary-color);
 }
 
+.Drip{
+    color:navy;
+}
+
+.Drop{
+    color:darkred;
+}
+
+.DripDrop{
+    color: magenta;
+    font-weight: bold;
+}
+
 code[class*="language-"],
     pre[class*="language-"] {
         white-space: pre-wrap;
