@@ -1,4 +1,5 @@
-//get the values from the user. We need to get the drip and the drop value.
+//get the values from the user. 
+//We need to get the drip and the drop value.
 //starts or controller function
 function getValues() {
    //get the user values from the page
@@ -11,8 +12,8 @@ function getValues() {
 
     //check that the numbers are integers
    if(Number.isInteger(dripValue) && Number.isInteger(dropValue)){
-   //call dripDrop
-   let dDArray = dripDrop(dripValue, dropValue,);
+   //call dripDrop parameters
+   let dDArray = dripDrop(dripValue, dropValue);
    //cal displayData and write the values to the screen
    displayData(dDArray);
    }else {

@@ -56,17 +56,127 @@
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                    //Call Hello World
-                    function HelloWorld(){
-                    alert("hello World");
-                    }
+                    //get the values from the user. 
+//We need to get the drip and the drop value.
+//starts or controller function
+function getValues() {
+   //get the user values from the page
+   let dripValue = document.getElementById("dripValue").value;
+   let dropValue = document.getElementById("dropValue").value;
+  
+   //parse for numbers
+   dripValue = parseInt(dripValue);
+   dropValue = parseInt(dropValue);
+
+    //check that the numbers are integers
+   if(Number.isInteger(dripValue) && Number.isInteger(dropValue)){
+   //call dripDrop
+   let dDArray = dripDrop(dripValue, dropValue);
+   //cal displayData and write the values to the screen
+   displayData(dDArray);
+   }else {
+      alert("You must enter an integers");
+   } 
+}
+//Do drip drop 
+//logic function(s)
+function dripDrop(dripValue, dropValue)
+{
+   let returnArray =[];
+
+   //loop from 1 to 100
+   for (let i = 1; i <= 100; i++) {
+
+   //check to see if divisible by Both (3 and 5)
+   //check to see if divisible by drip value (3)
+   //check to see if divisible by drop value (5)
+   if(i % dripValue == 0 && i % dropValue == 0){
+     returnArray.push('DripDrop');
+   }else if (i % dripValue == 0) {
+      returnArray.push('Drip')
+   }else if (i % dropValue == 0){
+      returnArray.push('Drop')
+   }else{
+      returnArray.push(i);
+     } 
+   }
+   return returnArray;
+}
+
+// loop over the array and create a tablerow for each item
+function displayData(dDArray){
+
+   //get the table body element from the page
+   let tableBody = document.getElementById("results");
+
+   //get the template row
+   let templateRow = document.getElementById("dDTemplate");
+
+   //clear table first
+   tableBody.innerHTML = "";
+
+   for (let index = 0; index < dDArray.length; index += 5) {
+      let tableRow = document.importNode(templateRow.content, true);
+
+      //grab the table data and put to use in array
+      let rowCols = tableRow.querySelectorAll("td");
+
+      rowCols[0].classList.add(dDArray[index]);
+      rowCols[0].textContent = dDArray[index];
+
+      rowCols[1].classList.add(dDArray[index + 1]);
+      rowCols[1].textContent = dDArray[index+1];
+
+      rowCols[2].classList.add(dDArray[index + 2]);
+      rowCols[2].textContent = dDArray[index+2];
+
+      rowCols[3].classList.add(dDArray[index + 3]);
+      rowCols[3].textContent = dDArray[index+3];
+
+      rowCols[4].classList.add(dDArray[index + 4]);
+      rowCols[4].textContent = dDArray[index+4];
+
+      tableBody.appendChild(tableRow);
+
+   }
+
+}
                 </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p> The code is structured in one function</p>
-                <h5> Hello World</h5>
-                <p> Hello world is a function that displays a message of "Hello World</p>
+                <p> The code is structured in three functions</p>
+                <h5> getValues</h5>
+                <p> getValues accepts(gets) the user input from the page. 
+                    It utilizes <strong>getElementById</strong> to pull the values from the page for the drip and drop values.
+                <br>
+                Next I take the drip and drop values and <strong>parseInt</strong> them(convert them), from a string to an ingeter.
+                <br>
+                Then I check to varify that the numbers were succesfully changed into intergers by creating an if/else statement.
+                </p>
+                <h5> dripDrop</h5>
+                <p> In this function, I start by setting an empty array.
+                    Next, I create a for loop with the iterator starting a 1, then looping until I am less than or equal to 100 by 
+                    adding one to the iterator everytime it loops. 
+                    Now I need to check to see if to see if the numbers are divisable by the numbers entered to create dripDrop.
+                    So, using a if/else If/else statement, I checked to see if the dripValue and the dropValue both have a remainder of 1, 
+                    if so then it show print<strong> dripDrop </strong> to the screen.
+                    I then do the same checks for the individual dripValue, which would only print <strong>drip</strong> if true, and repeat for the 
+                    same process for the dropValue, which would print <strong> drop </strong> if true.
+                    If neither statements are true, then the actual number would be printed to the screen.
+                </p>
+                <h5> displayData</h5>
+                <p> In this function, I will set up how the table will be displayed to the user. After setting up a blank table 
+                    in the <strong>app.html</strong> page, I grab the tableBody then the templateRow by the ID names. After I clear the table, just 
+                    in case there was data already in the table by setting it's innerHtml to blank. <br>
+                    Then using a for loop, I set the index to start at 0 and loop until it reaches the length of the array,
+                    while increasing the table index by 5 each time. Using <strong>importNode</strong>, I take a copy of the templateRow content from the html page. 
+                    This is now a document fragment. <br>
+                    Now, rowCols, I take the tableRow fragment and using a querySelector, it will find anything that is labeled "td". 
+                    <br>Finally, in each rowCols, we will take the selected data and add the text content to the selected index row. 
+                    Each time I add data to the table, I will print it on the page in the rows using the last statement <strong>tableBody.appendChild.</strong>
+                    To make the display of the table data more obvious, using the <strong>.classList</strong> and a little CSS, I have added colors to how the numbers are displayed.
+                </p>
             </div>
         </div>
     </div>
