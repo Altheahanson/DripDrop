@@ -21,7 +21,7 @@ Clone Repository
 ## Deployed Application Link
 https://drip-drop.netlify.app/app.html
 ## Images
-- ![DripDrop App](./img/dripdropApp.png)
+![DripDrop App](./img/dripdropApp.png)
 
 ## License
 - This project is govern under the General Public v3.0 License
